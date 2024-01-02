@@ -1,0 +1,7 @@
+python-dateutil
+python-dotenv
+slack-sdk
+tweepy
+urllib3
+boto3
+pytz
