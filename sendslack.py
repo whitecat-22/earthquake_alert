@@ -64,7 +64,7 @@ def format_text(json_data):
     print(json_data)
     # 緊急地震速報かつ第一報かつ予想震度3以上なら処理させる
     # get first eew message
-    if json_data.get('type') == 'eew' and json_data.get('report') == '1' and int(json_data.get('intensity')) > 0:
+    if json_data.get('type') == 'eew' and json_data.get('report') == '1' and str(json_data.get('intensity')) > '0':
         # get EQ Data
         dt = json_data.get('time')[:-3]
         dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
@@ -86,7 +86,7 @@ def format_text(json_data):
 
         post(text)
 
-    elif json_data.get('type') == 'eew' and json_data.get('report') == 'final' and int(json_data.get('intensity')) > 0:
+    elif json_data.get('type') == 'eew' and json_data.get('report') == 'final' and str(json_data.get('intensity')) > '0':
         # get EQ Data
         dt = json_data.get('time')[:-3]
         dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
