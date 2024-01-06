@@ -73,16 +73,12 @@ def format_text(json_data):
         depth = str(json_data.get('depth'))
         intensity = str(json_data.get('intensity'))
 
-        text = """
-            地　震　速　報　（第１報）
-
-            日　　時　　：　　{0}
-            震　　源　　：　　{1}
-            予想震度　　：　　{2}
-            規　　模　　：　　M{3}
-            深　　さ　　：　　{4}
-
-            """.format(dt, epicenter, intensity, str(magnitude), depth)
+        text = f"地震速報（第１報）\n\n" \
+            f"日　　時：{dt}\n" \
+            f"震　　源：{epicenter}\n" \
+            f"予想震度：{intensity}\n" \
+            f"規　　模：M{str(magnitude)}\n" \
+            f"深　　さ：{depth}"
 
         post(text)
 
@@ -95,23 +91,19 @@ def format_text(json_data):
         depth = str(json_data.get('depth'))
         intensity = str(json_data.get('intensity'))
 
-        text = """
-            地　震　速　報　（最終報）
-
-            日　　時　　：　　{0}
-            震　　源　　：　　{1}
-            予想震度　　：　　{2}
-            規　　模　　：　　M{3}
-            深　　さ　　：　　{4}
-
-            """.format(dt, epicenter, intensity, str(magnitude), depth)
+        text = f"地震速報（最終報）\n\n" \
+            f"日　　時：{dt}\n" \
+            f"震　　源：{epicenter}\n" \
+            f"予想震度：{intensity}\n" \
+            f"規　　模：M{str(magnitude)}\n" \
+            f"深　　さ：{depth}"
 
         post(text)
 
     # 誤報の場合はpga_alert_cancelが送られてくる「らしい」のでそちらも検知するようにする
     # Alert Cancel
     elif json_data.get('type') == 'pga_alert_cancel':
-        text = 'さきほどの震度速報はキャンセルされました。'
+        text = "さきほどの震度速報はキャンセルされました。"
 
         post(text)
 
