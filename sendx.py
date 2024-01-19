@@ -81,8 +81,12 @@ def format_text(json_data):
     # get first eew message
     if json_data.get('type') == 'eew' and json_data.get('report') == '1' and str(json_data.get('intensity')) > '0':
         # get EQ Data
-        dt = json_data.get('time')[:-3]
-        dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
+        try:
+            dt = json_data.get('time')[:-3]
+            dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
+        except Exception as e:
+            print(e)
+            dt = "-"
         magnitude = float(json_data.get('magnitude'))
         epicenter = str(json_data.get('epicenter'))
         depth = str(json_data.get('depth'))
@@ -101,8 +105,12 @@ def format_text(json_data):
 
     elif json_data.get('type') == 'eew' and json_data.get('report') == 'final' and str(json_data.get('intensity')) > '0':
         # get EQ Data
-        dt = json_data.get('time')[:-3]
-        dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
+        try:
+            dt = json_data.get('time')[:-3]
+            dt = datetime.fromtimestamp(int(dt)).astimezone(jst)
+        except Exception as e:
+            print(e)
+            dt = "-"
         magnitude = float(json_data.get('magnitude'))
         epicenter = str(json_data.get('epicenter'))
         depth = str(json_data.get('depth'))
